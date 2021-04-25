@@ -1,16 +1,15 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Sidebar from '../component/Sidebar'
+
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Whatsapp 2.0</title>
         <link rel="icon" href="/whatsapp.ico" />
       </Head>
-
-      <h1>Whatsapp 2.0</h1>
-      
+      <Sidebar />
     </div>
   )
 }
