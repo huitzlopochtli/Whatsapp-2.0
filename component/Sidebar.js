@@ -17,9 +17,6 @@ function Sidebar() {
     const userChatRef = db.collection('chats').where('users', 'array-contains', user.email);
     const [chatSnapshot] = useCollection(userChatRef);
 
-
-    console.log(chatSnapshot?.docs);
-
     const createNewChat = () => {
         const input = prompt('Please enter an email address for the user you wish to chat with');
 
@@ -38,13 +35,13 @@ function Sidebar() {
         }
     }
 
-    const chatAlreadyExists = (receipientEmail) =>
+    const chatAlreadyExists = (recipientEmail) =>
         !!chatSnapshot?.docs
             .find(chat =>
                 chat.data()
                     .users
                     .find(user =>
-                        user === receipientEmail
+                        user === recipientEmail
                     )?.length > 0
             );
 
@@ -78,7 +75,7 @@ function Sidebar() {
 
             {/* list of chats */}
             {chatSnapshot?.docs.map(chat => {
-                return <Chat key={chat.id} id={chat.id} user={chat.data().users} />
+                return <Chat key={chat.id} id={chat.id} users={chat.data().users} />
             })}
 
         </Container>

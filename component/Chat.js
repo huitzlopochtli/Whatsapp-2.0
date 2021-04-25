@@ -1,11 +1,19 @@
 import { Avatar } from '@material-ui/core';
 import styled from 'styled-components';
+import getRecipientEmail from '../helper/getRecipientEmail';
+import { auth, db } from '../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Chat({ id, users }) {
+
+    const [user] = useAuthState(auth);
+
+    const recipientEmail = getRecipientEmail(users, user);
+
     return (
         <Container>
             <UserAvatar />
-            <p>Receipient Email</p>
+            <p>{recipientEmail}</p>
         </Container>
     );
 }
